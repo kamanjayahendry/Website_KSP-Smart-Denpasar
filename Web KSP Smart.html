@@ -1,0 +1,924 @@
+<!doctype html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Koperasi KSP SMART - Semeton Anak Rantau Tabanan</title>
+    <meta name="description" content="KSP SMART - Koperasi Simpan Pinjam Semeton Anak Rantau Tabanan" />
+    <style>
+        :root {
+            --accent: #0ea5a4;
+            --dark: #0f172a;
+            --muted: #64748b;
+            --card: #ffffff;
+            --bg: #f8fafc;
+            --glass: rgba(255, 255, 255, 0.6);
+            --radius: 12px;
+            --maxw: 1100px;
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        body {
+            font-family: Inter, ui-sans-serif, system-ui, Segoe UI, Roboto, "Helvetica Neue", Arial;
+            margin: 0;
+            background: var(--bg);
+            color: var(--dark);
+            -webkit-font-smoothing: antialiased
+        }
+
+        .container {
+            max-width: var(--maxw);
+            margin: 36px auto;
+            padding: 24px
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            gap: 16px
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--accent), #06b6d4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 14px
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 20px
+        }
+
+        p.lead {
+            margin: 6px 0;
+            color: var(--muted)
+        }
+
+        nav {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 18px
+        }
+
+        .btn {
+            background: var(--card);
+            border: 1px solid #e6eef0;
+            padding: 8px 12px;
+            border-radius: 10px;
+            cursor: pointer
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 360px;
+            gap: 20px;
+            margin-top: 18px
+        }
+
+        .card {
+            background: var(--card);
+            border-radius: var(--radius);
+            padding: 18px;
+            box-shadow: 0 6px 18px rgba(2, 6, 23, 0.06)
+        }
+
+        /* profile & services */
+        .profile {
+            display: flex;
+            gap: 18px
+        }
+
+        .profile img {
+            width: 150px;
+            height: 110px;
+            object-fit: cover;
+            border-radius: 10px
+        }
+
+        ul.services {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px
+        }
+
+        ul.services li {
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px dashed #e6eef0
+        }
+
+        /* org structure */
+        .org-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 12px
+        }
+
+        .org-card {
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid #eef3f6;
+            background: linear-gradient(180deg, rgba(14, 165, 164, 0.03), transparent)
+        }
+
+        .org-role {
+            font-weight: 700
+        }
+
+        /* gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 8px
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer
+        }
+
+        /* calculators & tools */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px
+        }
+
+        @media(min-width:900px) {
+            .hero {
+                grid-template-columns: 1fr 420px
+            }
+
+            .tools-grid {
+                grid-template-columns: 1fr 1fr
+            }
+        }
+
+        footer {
+            margin-top: 24px;
+            text-align: center;
+            color: var(--muted);
+            font-size: 13px
+        }
+
+        /* modal */
+        .modal {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            background: rgba(2, 6, 23, 0.45)
+        }
+
+        .modal.open {
+            display: flex
+        }
+
+        .modal .panel {
+            width: 90%;
+            max-width: 720px;
+            background: var(--card);
+            padding: 18px;
+            border-radius: 12px
+        }
+
+        /* small */
+        @media(max-width:700px) {
+            .hero {
+                grid-template-columns: 1fr
+            }
+
+            .profile img {
+                width: 120px;
+                height: 90px
+            }
+        }
+
+        /* simple icons */
+        .social {
+            display: flex;
+            gap: 8px
+        }
+
+        .social a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px;
+            border-radius: 10px;
+            text-decoration: none;
+            border: 1px solid #e6eef0;
+            background: var(--card)
+        }
+
+        .tools-row {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap
+        }
+
+        input[type=range] {
+            width: 100%
+        }
+
+        label {
+            font-size: 13px;
+            color: var(--muted)
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <img src="logo-ksp-smart.png" alt="Logo KSP SMART" class="logo-img" />
+            <style>
+                .logo-img {
+                    width: 180px;
+                    height: 180px;
+                    border-radius: 12px;
+                    object-fit: cover;
+                }
+            </style>
+            <div>
+                <h1>KSP SMART — Semeton Anak Rantau Tabanan</h1>
+                <p class="lead">No Badan Hukum : 347BH/XXVII.9/2014 Tanggal 15 September 2015.</p>
+                <p class="lead">Koperasi Simpan Pinjam yang melayani simpanan & pinjaman, pembinaan anggota, dan
+                    pemberdayaan usaha mikro bagi anggota.</p>
+                <p style="margin-top:6px"><strong>Alamat:</strong> Jl. Gatot Subroto IV No.8, Denpasar —
+                    Bali</p>
+                <nav>
+                    <button class="btn" onclick="scrollToSection('profil')">Profil</button>
+                    <button class="btn" onclick="scrollToSection('layanan')">Layanan</button>
+                    <button class="btn" onclick="scrollToSection('struktur')">Struktur</button>
+                    <button class="btn" onclick="scrollToSection('galeri')">Galeri</button>
+                    <button class="btn" onclick="scrollToSection('tools')">Tools</button>
+                </nav>
+            </div>
+        </header>
+
+        <main class="hero">
+            <section>
+                <div id="profil" class="card">
+                    <h2>Profil Koperasi</h2>
+                    <div class="profile">
+                    </div>
+                    <!--Sejarah koperasi-->
+                    <div>
+                        <p><strong>Sejarah KSP SMART</strong></p>
+
+                        <ul>
+                            <P>Sejarah berdirinya Koperasi ini diawali dengan rapat paiketan semeton masyarakat
+                                tabanan pada hari Senin, tanggal 24 Pebruari 2014, dengan prihal pembentukan koperasi.
+                                Dalam hal pembentukan koperasi, wajib memahami pengertian, nilai dan prisip-prinsip
+                                koperasi. Dan selanjutnya pendiri melakukan rapat pembentukan koperasi dihadiri
+                                langsung oleh Kepala Dinas Koperasi Usaha Kecil dan Menengah Kota Denpasar, dan
+                                pada prinsipnya rapat menyetujui pembentukan koperasi simpan pinjam, dengan nama
+                                Koperasi Simpan Pinjam Semetom Masyarakat Anak Rantau Tabanan yang disingkat KSP.
+                                Smart dengan nama-nama anggota pendiri koperasi sebanyak 25 ( dua puluh lima) orang
+                                dan selanjutnya menetapkan nama pengurus dan pengawas. Selanjutnya pada tanggal 13
+                                Maret 2014, Pengurus KSP. Smart bersurat ke Dinas Koperasi, Usaha Kecil dan Menengah
+                                Kota Denpasar, dengan nomor surat 02/KSP.Smart/III/2014, dengan perihal Permohonan
+                                permintaan pengesahan akta pendirian koperasi. Pengesahan akta pendirian Koperasi baru
+                                diterima pada tanggal 10 Nopember 2014, dengan Badan Hukum Nomor
+                                347/BH/XXVII.9/XI/2014, oleh karena akta pendirian koperasi pada Notaris Ni Made
+                                Sukasari,S.H.,M.Kn, baru diterima tanggal 15 September 2014.</P>
+                            <style>
+                                p {
+                                    text-align: justify;
+                                }
+                            </style>
+                        </ul>
+
+                        <!--Visi misi koperasi-->
+                        <div>
+                            <p></p><strong>Visi:</strong> Menjadi Koperasi Simpan Pinjam yang Kuat dan Maju dalam
+                            Kebersamaan untuk Kesejahteraan Anggota.</p>
+                            <p><strong>Misi:</strong></p>
+                            <ul align="justify">
+                                <li>Menegakan nilai-nilai dan Prinsip berkoperasi sesuai UU Koperasi Indonesia.</li>
+                                <li>Mengedepankan kualitas pelayanan berkearifan lokal dalam mendukung kinerja koperasi.
+                                </li>
+                                <li>Meningkatkan kemampuan Pengurus dan Anggota Koperasi dalam menunjang kinerja
+                                    koperasi berkualitas.</li>
+                                <li>Pemanfaatan teknologi Informasi dalam menunjang kinerja koperasi berkualitas.</li>
+                                <li>Menegakan Disiplin dalam manajemen koperasi guna menunjang pengembangan koperasi
+                                    yang kuat dan maju.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--LAYANAN KSP SMART-->
+                <div id="layanan" class="card" style="margin-top:12px">
+                    <h2>Layanan KSP SMART</h2>
+                    <ul class="services">
+                        <li>
+                            <img src="icon simpanan.png" alt="icon simpanan.png" class="logo-simpanan" />
+                            <style>
+                                .logo-simpanan {
+                                    width: 80px;
+                                    height: 80px;
+                                    border-radius: 12px;
+                                    object-fit: cover;
+                                }
+                            </style>
+                            <p><strong>Simpanan Pokok</strong></p>
+                            <div style="font-size:13px;color:var(--muted)">Ketentuan simpanan anggota sesuai AD/ART
+                                koperasi, sebesar Rp.1000.000,-.</div>
+                        </li>
+                        <li>
+                            <img src="TABUNG.png" alt="icon TABUNG.png" class="logo-TABUNG" />
+                            <style>
+                                .logo-TABUNG {
+                                    width: 80px;
+                                    height: 80px;
+                                    border-radius: 12px;
+                                    object-fit: cover;
+                                }
+                            </style>
+                            <p><strong>Simpanan Wajib</strong></p>
+                            <div style="font-size:13px;color:var(--muted)">Simpanan yang wajib dibayar oleh anggota
+                                sebesar Rp. 50.000,-</div>
+                        </li>
+                        <li>
+                            <img src="tabungan sukarela.png" alt="icon TABUNG sukarela.png"
+                                class="logo-TABUNG-sukarela" />
+                            <style>
+                                .logo-TABUNG-sukarela {
+                                    width: 80px;
+                                    height: 80px;
+                                    border-radius: 12px;
+                                    object-fit: cover;
+                                }
+                            </style>
+                            <p><strong>Simpanan Sukarela</strong></p>
+                            <div style="font-size:13px;color:var(--muted)">Simpanan Karakteristiknya sama dengan
+                                Simpanan Wajib.</div>
+                        </li>
+                        <li>
+                            <img src="wajib1.png" alt="icon simpanan wajib.png" class="logo-simpananwajib" />
+                            <style>
+                                .logo-simpananwajib {
+                                    width: 80px;
+                                    height: 80px;
+                                    border-radius: 12px;
+                                    background-size: cover;
+                                }
+                            </style>
+                            <P><strong>Simpanan Wajib Pinjaman</strong></P>
+                            <div style="font-size:13px;color:var(--muted)">Simpanan yang dipotong pada saat melakukan
+                                pinjaman dan dapat diambil setelah lunas kredit pinjaman pada koperasi.</div>
+                        </li>
+                        <li>
+                            <img src="pinjaman.png" alt="icon pinjaman.png" class="logo-pinjaman" />
+                            <style>
+                                .logo-pinjaman {
+                                    width: 80px;
+                                    height: 80px;
+                                    border-radius: 12px;
+                                    background-size: cover;
+                                }
+                            </style>
+                            <P><strong>Pinjaman Anggota</strong></P>
+                            <div style="font-size:13px;color:var(--muted)">Bunga Pinjaman sebesar 18% per Tahun atau
+                                1,5% menurun per Bulan.</div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div id="struktur" class="card" style="margin-top:12px">
+                    <h2>Struktur Organisasi</h2>
+                    <div class="org-grid">
+                        <div class="org-card">
+                            <div class="org-role">Ketua Paguyuban SMART</div>
+                            <div>Dr. Ir. I Gusti Ngurah Eddy Mulya, SE, M,Si</div>
+                        </div>
+                        <div class="org-card">
+                            <div class="org-role">Ketua KSP SMART</div>
+                            <div>I Gede Hendry Kamanjaya, S.IP, M.M</div>
+                        </div>
+                        <div class="org-card">
+                            <div class="org-role">Sekretaris</div>
+                            <div>DRS. I Ketut Suarya, M.Pd.</div>
+                        </div>
+                        <div class="org-card">
+                            <div class="org-role">Bendahara</div>
+                            <div>I Wayan Wirata</div>
+                        </div>
+                        <div class="org-card">
+                            <div class="org-role">Ketua Pengawas</div>
+                            <div>DR.IGW MURJANA YASA,M.SI.</div>
+                        </div>
+                        <div class="org-card">
+                            <div class="org-role">Pengawas 1</div>
+                            <div>DRS. I Wayan Suaba.MBA</div>
+                        </div>
+                        <div class="org-card">
+                            <div class="org-role">Pengawas 2</div>
+                            <div>DR.dr.I Wayan Bikin Suryawan, Sp.A(K)</div>
+                        </div>
+                        <div class="org-card">
+                            <div class="org-role">Manajer KSP SMART</div>
+                            <div>I Made Anom Winatha, S.H.,M.Si</div>
+                        </div>
+                    </div>
+                    <p style="margin-top:10px;color:var(--muted)">Klik salah satu kartu organisasi untuk melihat detail
+                        (fungsi tersedia di panel sebelah kanan).</p>
+                </div>
+
+            </section>
+
+            <aside>
+                <div class="card">
+                    <h3>Kontak & Media Sosial</h3>
+                    <p style="margin:6px 0">Email: <strong>smartdenpasarksp@gmail.com</strong><br />Instagram:
+                        <strong>Kspsmartdenpasar_</strong><br />Telp: <strong>08989137894</strong>
+                    </p>
+                    <div class="social">
+                        <a href="#" onclick="openLink('https://www.facebook.com/share/14LRFFDzy8a/?mibextid=wwXIfr')"
+                            aria-label="Facebook">📘 Facebook</a>
+                        <a href="#"
+                            onclick="openLink('https://www.instagram.com/kspsmartdenpasar_?igsh=aWR5NDJrcHpmcHls')"
+                            aria-label="Instagram">📸 Instagram</a>
+                        <a href="#" onclick="openLink('https://youtube.com')" aria-label="YouTube">▶️ YouTube</a>
+                    </div>
+                </div>
+
+                <div class="card" style="margin-top:12px">
+                    <h3 style="font-weight: bold; color: #dc3545; font-size: 28px;">Estimasi Cepat</h3>
+                    <div class="tools-grid">
+                        <div>
+                            <h4>Perkiraan Pinjaman</h4>
+                            <div>
+                                <label>Jumlah Pinjaman (Rp)</label>
+                                <input id="loanAmount" type="number" value="5000000"
+                                    style="width:100%;padding:8px;margin:6px 0;border-radius:8px;border:1px solid #e6eef0" />
+                                <label>Tenor (bulan)</label>
+                                <input id="loanMonths" type="number" value="12"
+                                    style="width:100%;padding:8px;margin:6px 0;border-radius:8px;border:1px solid #e6eef0" />
+                                <label>Suku Bunga (%) per tahun</label>
+                                <input id="loanRate" type="number" value="18"
+                                    style="width:100%;padding:8px;margin:6px 0;border-radius:8px;border:1px solid #e6eef0" />
+                                <button class="btn" style="margin-top:6px;width:100%" onclick="calcLoan()">Hitung
+                                    Angsuran</button>
+                                <div id="loanResult" style="margin-top:8px;color:var(--muted)"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="savings-calculator"
+                                style="max-width: 400px; margin: auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px;">
+                                <h4>Estimasi Tabungan Bulanan</h4>
+
+                                <label for="monthlyDeposit">Setoran/Bulan (Rp)</label>
+                                <input id="monthlyDeposit" type="number" value="200000" min="0"
+                                    style="width:100%;padding:10px;margin:8px 0;border-radius:5px;border:1px solid #e6eef0" />
+
+                                <label for="saveMonths">Periode (Bulan)</label>
+                                <input id="saveMonths" type="number" value="12" min="1"
+                                    style="width:100%;padding:10px;margin:8px 0;border-radius:5px;border:1px solid #e6eef0" />
+
+                                <label for="monthlyRateDisplay">Suku Bunga Bulanan</label>
+                                <input id="monthlyRateDisplay" type="text" value="0.75%" readonly
+                                    style="width:100%;padding:10px;margin:8px 0;border-radius:5px;border:1px solid #e6eef0; background-color: #e9ecef;" />
+
+                                <button class="btn"
+                                    style="width:100%; padding: 12px; margin-top: 15px; border: none; border-radius: 5px; background-color: #28a745; color: white; cursor: pointer;"
+                                    onclick="calcMonthlySavings()">Hitung Simpanan Akhir</button>
+
+                                <div id="saveResult"
+                                    style="margin-top:20px; font-weight: bold; padding: 10px; border-radius: 5px; background-color: #e9f7eb;">
+                                    Hasil akan muncul di sini.
+                                </div>
+                            </div>
+
+                            <script>
+                                function calcMonthlySavings() {
+                                    // Tetapkan suku bunga bulanan: 9% per tahun / 12 bulan = 0.75%
+                                    const annualRate = 0.09;
+                                    const monthlyRate = annualRate / 12; // 0.0075
+
+                                    // Ambil nilai dari input
+                                    const deposit = parseFloat(document.getElementById('monthlyDeposit').value); // Setoran per bulan
+                                    const months = parseInt(document.getElementById('saveMonths').value);      // Periode dalam bulan
+
+                                    // Validasi input
+                                    if (isNaN(deposit) || isNaN(months) || deposit <= 0 || months <= 0) {
+                                        document.getElementById('saveResult').innerHTML = "⚠️ Masukkan angka Setoran/Bulan dan Periode (Bulan) yang valid (harus lebih dari 0).";
+                                        return;
+                                    }
+
+                                    let futureValue;
+
+                                    // Rumus Nilai Masa Depan (Future Value) Anuitas Biasa untuk setoran bulanan:
+                                    // FV = P * [((1 + r)^n - 1) / r]
+                                    // Di mana:
+                                    // P = Setoran Bulanan (Monthly Deposit)
+                                    // r = Suku Bunga Bulanan (0.0075)
+                                    // n = Jumlah Periode (Bulan)
+
+                                    const factor = (Math.pow((1 + monthlyRate), months) - 1) / monthlyRate;
+                                    futureValue = deposit * factor;
+
+                                    // Hitung total setoran yang Anda masukkan
+                                    const totalDeposit = deposit * months;
+
+                                    // Hitung total bunga yang didapat
+                                    const totalInterest = futureValue - totalDeposit;
+
+                                    // Format angka ke mata uang Rupiah
+                                    const formatter = new Intl.NumberFormat('id-ID', {
+                                        style: 'currency',
+                                        currency: 'IDR',
+                                        minimumFractionDigits: 0,
+                                        maximumFractionDigits: 0
+                                    });
+
+                                    const formattedFV = formatter.format(futureValue);
+                                    const formattedDeposit = formatter.format(totalDeposit);
+                                    const formattedInterest = formatter.format(totalInterest);
+
+                                    // Tampilkan hasil
+                                    document.getElementById('saveResult').innerHTML =
+                                        "💵 **Total Simpanan Akhir (Rp):** " + formattedFV +
+                                        "<br>---" +
+                                        "<br> **Total Setoran Anda:** " + formattedDeposit +
+                                        "<br> **Total Bunga yang Diperoleh:** " + formattedInterest +
+                                        "<br> *Dengan bunga majemuk bulanan setara 9% per tahun.*";
+                                }
+                            </script>
+
+                        </div>
+                    </div>
+                </div>
+                <!--START pdf fORM-->
+                <div class="card"
+                    style="max-width: 400px; margin: 12px auto; padding: 20px; border: 1px solid #ddd; border-radius: 10px;">
+
+                    <h3>Formulir Anggota</h3>
+                    <p style="font-size:13px; color: #6c757d;">
+                        Download contoh formulir pendaftaran anggota (PDF) atau cetak, lalu unggah kembali setelah
+                        diisi.
+                    </p>
+
+                    <div class="tools-row" style="margin-bottom: 20px; display: flex; gap: 10px;">
+                        <a class="btn" href="PERMOHONAN.pdf" download
+                            style="flex: 1; text-align: center; padding: 10px; background-color: #007bff; color: white; border-radius: 5px; text-decoration: none;">
+                            Download Formulir (PDF)
+                        </a>
+                        <a class="btn" href="#" onclick="printPage()"
+                            style="flex: 1; text-align: center; padding: 10px; background-color: #6c757d; color: white; border-radius: 5px; text-decoration: none;">
+                            Cetak Halaman
+                        </a>
+                    </div>
+
+                    <hr style="border-top: 1px solid #eee;">
+
+                    <form action="proses_penerimaan_form.php" method="POST" enctype="multipart/form-data"
+                        style="margin-top: 15px;">
+
+                        <label for="formAnggota" style="display: block; margin-top: 10px; font-weight: bold;">
+                            Unggah Formulir yang Sudah Diisi (PDF)
+                        </label>
+
+                        <input type="file" id="formAnggota" name="formAnggota" accept=".pdf, application/pdf" required
+                            style="width: 100%; padding: 10px; margin: 8px 0 15px 0; border: 1px solid #ccc; border-radius: 4px;">
+
+                        <button type="submit"
+                            style="width: 100%; padding: 10px; background-color: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                            Kirim Formulir Anggota
+                        </button>
+
+                    </form>
+
+                    <div id="uploadResult" style="margin-top:10px; font-size:14px; color:#6c757d;"></div>
+
+                </div>
+
+                <script>
+                    // Fungsi untuk mencetak halaman (tetap dipertahankan)
+                    function printPage() {
+                        window.print();
+                    }
+
+                    // Catatan: Fungsi downloadSampleForm() tidak diperlukan lagi karena menggunakan atribut 'download' pada tag <a>
+                </script>
+                <!--FINISHED pdf fORM-->
+
+                <!--jam dan kalender mulai-->
+                <!-- Jam & Kalender Mini -->
+                <!-- Jam & Kalender Sedang -->
+                <div id="datetime-container">
+                    <div id="clock"></div>
+                    <div id="calendar"></div>
+                </div>
+
+                <style>
+                    #datetime-container {
+                        width: 220px;
+                        padding: 10px 14px;
+                        border: 1px solid #dce1e6;
+                        border-radius: 10px;
+                        background: #ffffff;
+                        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+                        font-family: "Segoe UI", sans-serif;
+                        color: #2c3e50;
+                        text-align: center;
+                        transition: all 0.3s ease;
+                    }
+
+                    #datetime-container:hover {
+                        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+                    }
+
+                    #clock {
+                        font-size: 20px;
+                        font-weight: bold;
+                        letter-spacing: 1px;
+                        color: #1e293b;
+                    }
+
+                    #calendar {
+                        font-size: 13px;
+                        color: #64748b;
+                        margin-top: 4px;
+                    }
+                </style>
+
+                <script>
+                    function updateClock() {
+                        const now = new Date();
+                        const jam = now.getHours().toString().padStart(2, '0');
+                        const menit = now.getMinutes().toString().padStart(2, '0');
+                        const detik = now.getSeconds().toString().padStart(2, '0');
+                        document.getElementById('clock').textContent = `${jam}:${menit}:${detik}`;
+                    }
+
+                    function updateCalendar() {
+                        const now = new Date();
+                        const hari = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+                        const bulan = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+                        const tanggal = now.getDate();
+                        const bln = bulan[now.getMonth()];
+                        const thn = now.getFullYear();
+                        const hr = hari[now.getDay()];
+                        document.getElementById('calendar').textContent = `${hr}, ${tanggal} ${bln} ${thn}`;
+                    }
+
+                    function updateDateTime() {
+                        updateClock();
+                        updateCalendar();
+                    }
+
+                    setInterval(updateDateTime, 1000);
+                    updateDateTime();
+                </script>
+
+
+                <!--Jam dan Kalender selesai-->
+                <!--foto alur pinjaman-->
+                <!-- === Alur Layanan Pinjaman === -->
+                <section id="alur-pinjaman" style="padding:30px 0;">
+                    <div style="max-width:900px;margin:0 auto;text-align:center;">
+                        <h2 style="color:#0ea5a4;margin-bottom:8px;">Alur Layanan Pinjaman</h2>
+                        <p style="color:#64748b;font-size:14px;margin-bottom:16px;">
+                            Berikut adalah tahapan proses pengajuan pinjaman di KSP SMART (Semeton Anak Rantau Tabanan)
+                        </p>
+
+                        <!-- Gambar alur -->
+                        <figure
+                            style="background:#fff;padding:12px;border-radius:12px;box-shadow:0 4px 12px rgba(2,6,23,0.08);">
+                            <!-- Pastikan file JPEG disimpan di folder 'images' -->
+                            <img src="alur pinjaman.jpeg" alt="Alur Layanan Pinjaman KSP SMART"
+                                style="width:100%;height:auto;border-radius:10px;object-fit:contain;">
+                            <figcaption style="font-size:13px;color:#94a3b8;margin-top:8px;">
+                                Alur proses pengajuan pinjaman — mulai dari pendaftaran, verifikasi, hingga pencairan
+                                dana.
+                            </figcaption>
+                        </figure>
+                    </div>
+                </section>
+
+                <!--foto alur pinjaman selesai-->
+    </div>
+
+    </aside>
+    </main>
+
+    <section id="galeri" class="card" style="margin-top:18px">
+        <h2>Foto Dokumentasi Kegiatan</h2>
+        <div class="gallery">
+            <img src="Melanting smart.jpeg" alt="kegiatan 1" onclick="openLightbox(this.src)" />
+            <img src="bimtek anggota.jpeg" alt="kegiatan 2" onclick="openLightbox(this.src)" />
+            <img src="hendry.jpeg" alt="kegiatan 3" onclick="openLightbox(this.src)" />
+            <img src="Suarya.jpeg" alt="kegiatan 4" onclick="openLightbox(this.src)" />
+            <img src="Pak anom.jpeg" alt="kegiatan 4" onclick="openLightbox(this.src)" />
+            <img src="pak suaba.jpeg" alt="kegiatan 4" onclick="openLightbox(this.src)" />
+        </div>
+    </section>
+
+    <section id="tools" class="card" style="margin-top:18px">
+        <h2>Tools Penting Lainnya</h2>
+        <ul>
+            <li>Dashboard anggota (ide): login anggota, riwayat simpanan & pinjaman.</li>
+            <li>Integrasi pembayaran digital: e-wallet / transfer bank untuk setoran & angsuran otomatis.</li>
+            <li>Modul laporan keuangan: neraca, L/R, arus kas, dan laporan pengurus.</li>
+            <li>Sistem notifikasi: SMS / WhatsApp / Email untuk pengingat angsuran.</li>
+            <li>Backup data & keamanan: enkripsi, role-based access, dan backup berkala.</li>
+        </ul>
+    </section>
+    <!-- 🔹 Berita Terkini & Buletin Kegiatan -->
+    <section id="berita" style="padding:60px 0;background:#ffffff;">
+        <div class="container">
+            <h2 style="text-align:center;color:#0ea5a4;">Berita Terkini & Buletin Kegiatan</h2>
+            <p style="text-align:center;color:#64748b;margin-bottom:30px">
+                Update terbaru seputar kegiatan dan layanan KSP SMART (Semeton Anak Rantau Tabanan)
+            </p>
+
+            <div id="berita-list"
+                style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;">
+                <!-- start berita /buletin-->
+                <div class="berita-card"
+                    style="background:#f9fafb;border-radius:12px;overflow:hidden;box-shadow:0 2px 6px rgba(0,0,0,0.08)">
+                    <img src="Berita melanting.jpeg" alt="Tirtayatra Ke Pura Melanting"
+                        style="width:100%;height:180px;object-fit:cover;">
+                    <div style="padding:16px">
+                        <h3 style="margin:0;color:#0f172a;font-size:18px">Tirtayatra KSP Smart Ke Pura Melanting dan
+                            Pulaki</h3>
+                        <p style="color:#64748b;font-size:14px;margin-top:6px">
+                            Dalam Rangka Hari Ulang Tahun KSP Smart, maka dilaksanakan persembahyangan bersama ke
+                            Pura Melanting dan Pura Pulaki,
+                            sebagai bentuk rasa syukur atas perkembangan dan kemajuan KSP Smart. semoga kedepannya
+                            KSP Smart Tepat Jaya.
+                        </p>
+                        <p style="font-size:13px;color:#94a3b8;margin-top:8px;">📅 9 November 2025</p>
+                    </div>
+                </div>
+
+                <div class="berita-card"
+                    style="background:#f9fafb;border-radius:12px;overflow:hidden;box-shadow:0 2px 6px rgba(0,0,0,0.08)">
+                    <img src="bimtek ksp smart.jpeg" alt="Rapat Anggota Tahunan"
+                        style="width:100%;height:180px;object-fit:cover;">
+                    <div style="padding:16px">
+                        <h3 style="margin:0;color:#0f172a;font-size:18px">Bimtek Anggota KSP Smart Tahun 2025</h3>
+                        <p style="color:#64748b;font-size:14px;margin-top:6px">
+                            Pembinaan dan pelatihan dilakukan untuk memberikan ilmu terkait perkoperasian kepada
+                            calon anggota dan
+                            bagaimana kinerja dan mekanisme layanan pada KSP Smart.
+                        </p>
+                        <p style="font-size:13px;color:#94a3b8;margin-top:8px;">📅 1 Oktober 2025</p>
+                    </div>
+                </div>
+
+                <!-- Contoh Berita 1 -->
+                <div class="berita-card"
+                    style="background:#f9fafb;border-radius:12px;overflow:hidden;box-shadow:0 2px 6px rgba(0,0,0,0.08)">
+                    <img src="rat 2024.jpeg" alt="Rapat Anggota Tahun"
+                        style="width:100%;height:180px;object-fit:cover;">
+                    <div style="padding:16px">
+                        <h3 style="margin:0;color:#0f172a;font-size:18px">Rapat Anggota Tahunan KSP SMART 2024</h3>
+                        <p style="color:#64748b;font-size:14px;margin-top:6px">
+                            Rapat tahunan berjalan sukses membahas laporan keuangan dan rencana kerja koperasi tahun
+                            depan.
+                        </p>
+                        <p style="font-size:13px;color:#94a3b8;margin-top:8px;">📅 24 Februari 2024</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contoh Berita 2 -->
+            <div class="berita-card"
+                style="background:#f9fafb;border-radius:12px;overflow:hidden;box-shadow:0 2px 6px rgba(0,0,0,0.08)">
+                <img src="RAT Tahun 2023.jpeg" alt="Rat Tahun 2023" style="width:100%;height:180px;object-fit:cover;">
+                <div style="padding:16px">
+                    <h3 style="margin:0;color:#0f172a;font-size:18px">Rapat Anggota Tahunan KSP SMART 2023</h3>
+                    <p style="color:#64748b;font-size:14px;margin-top:6px">
+                        Rapat tahunan berjalan sukses membahas laporan keuangan dan rencana kerja koperasi tahun
+                        depan.
+                    </p>
+                    <p style="font-size:13px;color:#94a3b8;margin-top:8px;">📅 25 Maret 2024</p>
+                </div>
+            </div>
+
+            <!-- Contoh Berita 3 -->
+            <div class="berita-card"
+                style="background:#f9fafb;border-radius:12px;overflow:hidden;box-shadow:0 2px 6px rgba(0,0,0,0.08)">
+                <img src="rat 2022.jpeg" alt="Rapat Anggota Tahun 2022"
+                    style="width:100%;height:180px;object-fit:cover;">
+                <div style="padding:16px">
+                    <h3 style="margin:0;color:#0f172a;font-size:18px">Rapat Anggota Tahunan KSP SMART 2022</h3>
+                    <p style="color:#64748b;font-size:14px;margin-top:6px">
+                        Rapat tahunan berjalan sukses membahas laporan keuangan dan rencana kerja koperasi tahun
+                        depan.
+                    </p>
+                    <p style="font-size:13px;color:#94a3b8;margin-top:8px;">📅 6 Maret 2023</p>
+                </div>
+            </div>
+
+            <!-- 🔸 Tombol untuk buka buletin -->
+            <div style="text-align:center;margin-top:40px;">
+                <button onclick="bukaBuletin()"
+                    style="padding:12px 28px;background:#0ea5a4;color:white;border:none;border-radius:8px;cursor:pointer;font-weight:600;">
+                    📘 Buka Buletin Kegiatan Terbaru
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Fungsi simulasi buka buletin (nanti bisa diarahkan ke file PDF atau halaman baru)
+        function bukaBuletin() {
+            alert("Buletin KSP SMART akan segera tersedia! Anda dapat mengunduh versi PDF di halaman ini.");
+            // Contoh jika sudah ada file buletin: window.open('buletin-smart.pdf', '_blank');
+        }
+    </script>
+
+
+    <footer>
+        <p>Template sederhana untuk KSP SMART — sesuaikan data, foto, dan kebijakan koperasi Anda. Dibuat dengan ♥
+        </p>
+    </footer>
+
+    </div>
+
+    <!-- Modal / Lightbox -->
+    <div id="lightbox" class="modal" onclick="closeLightbox(event)">
+        <div class="panel" role="dialog" aria-modal="true">
+            <button class="btn" style="float:right" onclick="closeLightbox(event)">Tutup</button>
+            <div id="lightboxContent" style="margin-top:26px"></div>
+        </div>
+    </div>
+
+    <script>
+        function scrollToSection(id) { document.getElementById(id).scrollIntoView({ behavior: 'smooth' }); }
+        function openLink(url) { window.open(url, '_blank') }
+
+        // Lightbox
+        function openLightbox(src) {
+            const lb = document.getElementById('lightbox');
+            const content = document.getElementById('lightboxContent');
+            content.innerHTML = '<img src="' + src + '" style="width:100%;height:auto;border-radius:8px"/>';
+            lb.classList.add('open');
+        }
+        function closeLightbox(e) { if (e.target.id === 'lightbox' || e.target.innerText === 'Tutup') document.getElementById('lightbox').classList.remove('open'); }
+
+        // Loan calculator (simple annuity)
+        function calcLoan() {
+            const P = Number(document.getElementById('loanAmount').value) || 0;
+            const months = Number(document.getElementById('loanMonths').value) || 1;
+            const rateAnnual = Number(document.getElementById('loanRate').value) || 0;
+            const r = rateAnnual / 100 / 12;
+            let installment;
+            if (r === 0) installment = P / months;
+            else installment = P * (r * Math.pow(1 + r, months)) / (Math.pow(1 + r, months) - 1);
+            const total = installment * months;
+            document.getElementById('loanResult').innerHTML = '<strong>Angsuran/bln:</strong> Rp ' + numberWithCommas(Math.round(installment)) + '<br/><strong>Total bayar:</strong> Rp ' + numberWithCommas(Math.round(total));
+        }
+
+        function calcSavings() {
+            const s = Number(document.getElementById('saveAmount').value) || 0;
+            const n = Number(document.getElementById('saveMonths').value) || 0;
+            const total = s * n;
+            document.getElementById('saveResult').innerHTML = '<strong>Simpanan akhir (estimasi):</strong> Rp ' + numberWithCommas(total);
+        }
+
+        function numberWithCommas(x) { return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."); }
+
+        // sample download (create a small PDF blob or fallback to printing)
+        function downloadSampleForm() {
+            const content = 'Formulir Pendaftaran Anggota KSP SMART\n\nNama: ___________________\nAlamat: __________________\nNo. KTP: _________________\n\n(Terima kasih)';
+            const blob = new Blob([content], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a'); a.href = url; a.download = 'formulir_anggota_ksp_smart.txt'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+        }
+
+        function printPage() { window.print(); }
+
+        // init - optional: calculate default
+        calcLoan(); calcSavings();
+    </script>
+</body>
+
+</html>
